@@ -72,7 +72,7 @@ public class LogsFormatter extends Formatter {
             //consoleHandler = new ConsoleHandler();
 
             //fileHandler = new FileHandler("./" + this.getClass().getCanonicalName()+sTmp+".log");
-            fileHandler = new FileHandler(name);
+            fileHandler = new FileHandler(name, true);
 	    //Assigning handlers to LOGGER object
             logsFormatter = new LogsFormatter();
 
