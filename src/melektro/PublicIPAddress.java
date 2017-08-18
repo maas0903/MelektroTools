@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static melektro.LogsFormatter.Log;
 
 /**
  *
@@ -20,20 +21,7 @@ import java.util.logging.Logger;
  */
 
 public class PublicIPAddress {
-
     
-    static Logger logger = null;
-
-    public static void SetLogger(Logger LOGGER) {
-        logger = LOGGER;
-    }
-    
-    
-    public static void Log(String message) {
-        System.out.println(message);
-        logger.log(Level.ALL, message);
-    }
-
     public static String GetPublicIp(String ProxyToUse, String ProxyPortToUse) throws Exception {
         URL whatismyip = new URL("http://checkip.amazonaws.com/");
         URLConnection connection;

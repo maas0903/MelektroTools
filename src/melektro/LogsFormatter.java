@@ -20,8 +20,8 @@ import java.util.logging.Logger;
  *
  * @author Marius
  * <br>
- * Usage: static final Logger logger = new
- * LogsFormatter().setLogging(TestTimers.class.getName(), Level.ALL);
+ Usage: static final Logger internalLogger = new
+ LogsFormatter().setLogging(TestTimers.class.getName(), Level.ALL);
  */
 public class LogsFormatter extends Formatter {
 
@@ -57,6 +57,13 @@ public class LogsFormatter extends Formatter {
      *
      *
      */
+    static Logger internalLogger = null;
+    
+    public static void Log(String message) {
+        System.out.println(message);
+        internalLogger.log(Level.ALL, message);
+    }
+
 
     public Logger setLogging(Level logLevel) {
         Calendar cal = Calendar.getInstance();
@@ -87,6 +94,7 @@ public class LogsFormatter extends Formatter {
             //Console handler removed
             //logger.removeHandler(consoleHandler);
             //logger.removeHandler(fileHandler);
+            internalLogger = logger ;
             return logger;
         } catch (IOException exception) {
             logger.log(Level.SEVERE, "Error occur in setLogger.", exception);
