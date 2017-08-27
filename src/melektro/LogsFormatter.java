@@ -59,7 +59,7 @@ public class LogsFormatter extends Formatter {
      */
     static Logger internalLogger = null;
     
-    public static void Log(String message) {
+       public static void Log(String message) {
         System.out.println(message);
         internalLogger.log(Level.ALL, message);
     }
