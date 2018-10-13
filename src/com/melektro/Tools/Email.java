@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package melektro;
+package com.melektro.Tools;
 
 import com.sun.mail.smtp.SMTPTransport;
 import java.util.Properties;
@@ -15,7 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import static melektro.LogsFormatter.Log;
+import static com.melektro.Tools.LogsFormatter.Log;
 
 /**
  *

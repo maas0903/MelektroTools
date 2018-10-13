@@ -2,4 +2,4 @@
  * 1. Logging
  * Here is a comment linking to {@link java.lang.Object}.
  */
-package melektro;
+package com.melektro.Tools;

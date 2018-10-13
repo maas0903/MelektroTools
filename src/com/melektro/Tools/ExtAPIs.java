@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package melektro;
+package com.melektro.Tools;
 
 import java.io.IOException;
-import static melektro.MyWget.MyWget;
+import static com.melektro.Tools.MyWget.MyWget;
 
 /**
  *

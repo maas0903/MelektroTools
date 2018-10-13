@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package melektro;
+package com.melektro.Tools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.CharBuffer;
-import static melektro.LogsFormatter.Log;
+import static com.melektro.Tools.LogsFormatter.Log;
 
 /**
  *
