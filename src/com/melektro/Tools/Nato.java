@@ -16,6 +16,7 @@ public class Nato {
 
     public static String GetNato(String inputString) {
         String returnStr = "";
+                
         HashMap<String, String> natoMap = new HashMap<>();
         natoMap.put("A", "Alfa     =>	.-   ");
         natoMap.put("B", "Bravo    =>	-... ");

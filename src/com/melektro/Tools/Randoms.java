@@ -19,10 +19,10 @@ public class Randoms {
     }
 
     public static int GetRandomNumber(int max) {
-        return new Random(Long.parseLong(UUID.randomUUID().toString().substring(0, 7), 16)).nextInt(max) + 1;
+        return new Random(GetSeed()).nextInt(max) + 1;
     }
 
-    public static int GetRandomNumber(int max, long seed) {
+    private static int GetRandomNumber(int max, long seed) {
         return new Random(seed).nextInt(max) + 1;
     }
 

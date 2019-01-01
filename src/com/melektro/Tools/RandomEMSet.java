@@ -22,10 +22,10 @@ public class RandomEMSet {
     }
 
     public static List<String> makeARandomEMSet() {
-        List<Integer> RaList = new ArrayList();
+        List<Integer> RaList = new ArrayList<Integer>();
         List<Integer> list;
-        List<String> slist = new ArrayList();
-        List<String> ASet = new ArrayList();
+        List<String> slist = new ArrayList<String>();
+        List<String> ASet = new ArrayList<String>();
         for (int i = 1; i < 9; i++) {
             do {
                 RaList.add(Randoms.GetRandomNumber(49));
@@ -33,9 +33,9 @@ public class RandomEMSet {
             } while (list.size() < 5);
             Collections.sort(list);
 
-            List<Integer> RaList2 = new ArrayList();
+            List<Integer> RaList2 = new ArrayList<Integer>();
             List<Integer> list2;
-            List<String> slist2 = new ArrayList();
+            List<String> slist2 = new ArrayList<String>();
             do {
                 RaList2.add(Randoms.GetRandomNumber(11));
                 list2 = getUnique(RaList2);
