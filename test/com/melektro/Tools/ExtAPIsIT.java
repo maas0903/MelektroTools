@@ -5,6 +5,7 @@
  */
 package com.melektro.Tools;
 
+import static com.melektro.Tools.ExtAPIs.GetDatePartWithFormat;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -92,7 +93,7 @@ public class ExtAPIsIT {
     }
 
     /**
-     * Test of GetToday method, of class ExtAPIs.
+     * Test of GetAday method, of class ExtAPIs.
      */
     @Test
     public void testGetToday() throws Exception {
@@ -100,7 +101,8 @@ public class ExtAPIsIT {
         String ProxyToUse = "";
         String ProxyPortToUse = "";
         String expResult = "";
-        String result = ExtAPIs.GetToday(ProxyToUse, ProxyPortToUse);
+        String dateToday = GetDatePartWithFormat("MMMM") + "_" + GetDatePartWithFormat("d");
+        String result = ExtAPIs.GetAday(dateToday, ProxyToUse, ProxyPortToUse);
         assertTrue(result.length()>0);
     }
 
@@ -114,6 +116,31 @@ public class ExtAPIsIT {
         assertTrue(result.length()>0);
         assertFalse(result.contains("Indexes not calculated"));
         assertFalse(result.contains("Cannot Parse"));
+        assertTrue(result.contains("date"));
+        assertTrue(result.contains("data"));
+        assertTrue(result.contains("Events"));
+        assertTrue(result.contains("Births"));
+        assertTrue(result.contains("Deaths"));
+    }
+    
+    /**
+     * Test of GetADay_Formatted method, of class ExtAPIs.
+     */
+    @Test
+    public void GetADay_FormattedOK() throws Exception {
+        System.out.println("GetADay_Formatted");
+        String result = ExtAPIs.GetADay_Formatted("december_9");
+        assertTrue(result.length()>0);
+        assertFalse(result.contains("Indexes not calculated"));
+        assertFalse(result.contains("Cannot Parse"));
+    }
+    
+    @Test
+    public void GetADay_FormattedKO() throws Exception {
+        System.out.println("GetADay_Formatted");
+        String result = ExtAPIs.GetADay_Formatted("octember_5");
+        assertTrue(result.length()>0);
+        assertTrue(result.contains("is not a valid date."));
     }
     
 }

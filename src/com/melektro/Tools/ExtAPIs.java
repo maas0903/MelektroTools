@@ -47,106 +47,16 @@ public class ExtAPIs {
         return dateFormat.format(date);
     }
 
-    public static String GetToday(String ProxyToUse, String ProxyPortToUse) throws IOException {
-        String dateToday = GetDatePartWithFormat("MMMM") + "_" + GetDatePartWithFormat("d");
-        return MyWget("https://wikipedia.org/wiki/" + dateToday, ProxyToUse, ProxyPortToUse);
-
-        //return MyWget("https://history.muffinlabs.com/date", ProxyToUse, ProxyPortToUse);
+    public static String GetAday(String ADay, String ProxyToUse, String ProxyPortToUse) throws IOException, InterruptedException {
+        String result = MyWget("https://wikipedia.org/wiki/" + ADay, ProxyToUse, ProxyPortToUse);
+        return result;
     }
 
-    public static String GetToday_Formatted() throws IOException {
-        String eventsString = "<h2><span class=\"mw-headline\" id=\"Events\">Events</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Events\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
-        String birthsString = "<h2><span class=\"mw-headline\" id=\"Births\">Births</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Births\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
-        String deathsString = "<h2><span class=\"mw-headline\" id=\"Deaths\">Deaths</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Deaths\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
-
-        //var obj = JSON.parse(GetToday("",""));
-        String result = GetToday("", "");
-        result = result.substring(1, result.length() - 1);
-
-        result = result.replace(">, <", "> <");
-        result = result.replace(">, , <", "> <");
-        result = result.replace(">,", ">");
-
-        Document doc = Jsoup.parse(result);
-
-//        doc.select("head").remove();
-//        doc.getElementById("siteSub").remove();
-//        doc.getElementById("mw-fr-revisiondetails").remove();
-//        doc.getElementById("contentSub").remove();
-//        doc.getElementById("mw-indicator-pp-autoreview").remove();
-//        doc.getElementById("siteNotice").remove();
-//        doc.getElementById("top").remove();
-//        doc.getElementById("firstHeading").remove();
-//        doc.getElementsByClass("mw-indicators mw-body-content").remove();
-//        result = doc.toString();
-        doc.select(
-                "table").remove();
-        doc.getElementsByClass(
-                "mw-empty-elt").remove();
-        doc.getElementsByClass(
-                "shortdescription nomobile noexcerpt noprint searchaux").remove();
-        doc.getElementById(
-                "toc").remove();
-        doc.getElementById(
-                "Holidays_and_observances").remove();
-        doc.getElementsByClass(
-                "reflist").remove();
-        //doc.getElementsByClass("mw-editsection").remove();
-        //doc.getElementsByClass("mw-headline").remove();
-        Elements content = doc.getElementsByClass("mw-parser-output");
-        //result = content.toString();
-
-        String events = content.toString();
-
-        String dateToday = GetDatePartWithFormat("MMMM") + "_" + GetDatePartWithFormat("d");
-        birthsString = birthsString.replace("December_29", dateToday);
-        eventsString = eventsString.replace("December_29", dateToday);
-        events = events.replaceAll("section\\=(?<section>\\d+)", "section=x");
-
-        try {
-            Integer beginIndex = events.indexOf(eventsString);
-            Integer endIndex = events.indexOf(birthsString);
-            if (beginIndex > 0 && endIndex > 0) {
-                events = events.substring(beginIndex + eventsString.length(), endIndex).replaceAll("\\[\\d+\\]", "");
-                doc = Jsoup.parse(events);
-
-                Elements lines = doc.select("li");
-
-                List<String> ThisSet = new ArrayList<>();
-
-                lines.forEach(element -> {
-                    ThisSet.add(element.text().replace(" – ", " - "));
-                });
-
-                result = new GsonBuilder().setPrettyPrinting().create().toJson(ThisSet).replace("\\\"", "\"");
-                result = UnEscapeString.Unescape(result);
-            } else {
-                result = "Indexes not calculated";
-            }
-        } catch (Exception e) {
-            result = "Cannot Parse";
-        }
-
-        //Remove all HTML tags
-        //result = doc.text();
-//        Elements toRemove = doc.select("<head>");
-//        toRemove.remove();
-//        Elements sections = doc.select("section");
-//        Element editSection = sections.get(0);
-//        Elements toRemove = doc.select("div");
-//        toRemove.remove();
-//        toRemove = doc.select("table");
-//        toRemove.remove();
-        /*
-        Iterator<Element> iter = divs.iterator();
-        
-        while(iter.hasNext()){
-            Element div = iter.next();
-        };
-         */
-        //List<Element> element = doc.getElementsByAttribute("Events");
-        //List<Node> events = element.childNodes();
-        //result = editSection.html();
-        return result;
+    public static String GetToday_Formatted() throws IOException, InterruptedException {
+        return InHistory.Today();
+    }
+    
+    public static String GetADay_Formatted(String ADay) throws IOException, InterruptedException {
+        return InHistory.GetHistory(ADay);
     }
 }
