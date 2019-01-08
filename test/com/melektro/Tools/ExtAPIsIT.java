@@ -76,8 +76,14 @@ public class ExtAPIsIT {
         String lon = "4.698870";
         String count = "5";
         String expResult = "";
-        String result = ExtAPIs.GetIssWhen(ProxyToUse, ProxyPortToUse, lat, lon, count);
+        String result = ExtAPIs.GetIssWhen(ProxyToUse, ProxyPortToUse, lat, lon, count, 1);
         assertTrue(result.length()>0);
+        assertTrue(result.contains("success"));
+        assertTrue(result.contains("altitude"));
+        assertTrue(result.contains("datetime"));
+        assertTrue(result.contains("latitude"));
+        assertTrue(result.contains("longitude"));
+        assertTrue(result.contains("altitude"));
     }
 
     /**
@@ -133,7 +139,11 @@ public class ExtAPIsIT {
         assertTrue(result.length()>0);
         assertFalse(result.contains("Indexes not calculated"));
         assertFalse(result.contains("Cannot Parse"));
-    }
+        assertTrue(result.contains("date"));
+        assertTrue(result.contains("data"));
+        assertTrue(result.contains("Events"));
+        assertTrue(result.contains("Births"));
+        assertTrue(result.contains("Deaths"));    }
     
     @Test
     public void GetADay_FormattedKO() throws Exception {

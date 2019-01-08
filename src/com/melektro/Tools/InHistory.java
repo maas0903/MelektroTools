@@ -5,10 +5,7 @@
  */
 package com.melektro.Tools;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
 import static com.melektro.Tools.ExtAPIs.GetDatePartWithFormat;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,10 +14,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import static com.melektro.Tools.ExtAPIs.GetAday;
-import java.lang.reflect.Type;
-import java.util.LinkedList;
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.nodes.Element;
 
 /**
  *
@@ -41,15 +35,12 @@ class RootObject {
 
 public class InHistory {
 
-    //private static String eventsString = "<h2><span class=\"mw-headline\" id=\"Events\">Events</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Events\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
-    //private static String birthsString = "<h2><span class=\"mw-headline\" id=\"Births\">Births</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Births\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
-    //private static String deathsString = "<h2><span class=\"mw-headline\" id=\"Deaths\">Deaths</span><span class=\"mw-editsection\"><span class=\"mw-editsection-bracket\">[</span><a href=\"/w/index.php?title=December_29&amp;action=edit&amp;section=x\" title=\"Edit section: Deaths\">edit</a><span class=\"mw-editsection-bracket\">]</span></span></h2>";
     private static final String MONTHTEST = ",january,february,march,april,may,june,july,august,september,october,november,december,";
 
     private static boolean ValidDate(String ADay) {
         try {
             String month = ADay.substring(0, ADay.indexOf("_"));
-            return MONTHTEST.indexOf("," + month.toLowerCase() + ",") >= 0;
+            return MONTHTEST.contains("," + month.toLowerCase() + ",");
         } catch (Exception e) {
             return false;
         }
@@ -89,12 +80,12 @@ public class InHistory {
         result = result.replace(">,", ">");
 
         Document doc = Jsoup.parse(result);
-        doc.select("table").remove();
-        doc.getElementsByClass("mw-empty-elt").remove();
-        doc.getElementsByClass("shortdescription nomobile noexcerpt noprint searchaux").remove();
-        doc.getElementById("toc").remove();
-        doc.getElementById("Holidays_and_observances").remove();
-        doc.getElementsByClass("reflist").remove();
+//        doc.select("table").remove();
+//        doc.getElementsByClass("mw-empty-elt").remove();
+//        doc.getElementsByClass("shortdescription nomobile noexcerpt noprint searchaux").remove();
+//        doc.getElementById("toc").remove();
+//        doc.getElementById("Holidays_and_observances").remove();
+//        doc.getElementsByClass("reflist").remove();
         Elements content = doc.getElementsByClass("mw-parser-output");
 
         String today = content.toString();
