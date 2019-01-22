@@ -91,10 +91,15 @@ public class InHistory {
         String today = content.toString();
 
         Elements h2Tags = doc.select("h2");
-        String eventString = h2Tags.get(0).toString();
-        String birthsString = h2Tags.get(1).toString();
-        String deathsString = h2Tags.get(2).toString();
-        String holidaysString = h2Tags.get(3).toString();
+        Integer startIndex = 0;
+        String eventString = h2Tags.get(startIndex).toString();
+        if (eventString.contains("<h2>Contents</h2>")) {
+            startIndex++;
+            eventString = h2Tags.get(startIndex).toString();
+        }
+        String birthsString = h2Tags.get(startIndex+1).toString();
+        String deathsString = h2Tags.get(startIndex+2).toString();
+        String holidaysString = h2Tags.get(startIndex+3).toString();
 
         Integer eventsIndex = today.indexOf(eventString);
         Integer birthsIndex = today.indexOf(birthsString);

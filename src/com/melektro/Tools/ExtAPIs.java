@@ -158,4 +158,9 @@ public class ExtAPIs {
     public static String GetADay_Formatted(String ADay) throws IOException, InterruptedException {
         return InHistory.GetHistory(ADay);
     }
+    
+    public static String GetExchangeRate(String ExchangeFrom, String ExchangeTo) throws IOException, InterruptedException {
+        String result = MyWget("http://free.currencyconverterapi.com/api/v5/convert?q=" + ExchangeFrom + "_" + ExchangeTo + "&compact=y", "", "");
+        return result;
+    }
 }

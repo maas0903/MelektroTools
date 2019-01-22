@@ -6,6 +6,7 @@
 package com.melektro.Tools;
 
 import static com.melektro.Tools.ExtAPIs.GetDatePartWithFormat;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -151,6 +152,14 @@ public class ExtAPIsIT {
         String result = ExtAPIs.GetADay_Formatted("octember_5");
         assertTrue(result.length()>0);
         assertTrue(result.contains("is not a valid date."));
+    }
+    
+    @Test
+    public void GetExchangeRate() throws IOException, InterruptedException{
+        System.out.println("GetExchangeRate");
+        String result = ExtAPIs.GetExchangeRate("EUR", "ZAR");
+        assertTrue(result.length()>0);
+        assertTrue(result.contains("EUR_ZAR"));
     }
     
 }
